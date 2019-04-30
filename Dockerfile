@@ -1,12 +1,11 @@
-FROM php:7.3-apache-stretch
+FROM php:7.2-apache-stretch
 MAINTAINER Gideon van der Merwe "appiusa@gmail.com"
 ENV REFRESHED_AT 2019-04-30
 
 RUN apt-get update && apt-get install -y \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
-	libpng-dev \
-    php-xml
+	libpng-dev
 
 RUN docker-php-ext-install -j$(nproc) opcache mysqli pdo_mysql xml zip && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
